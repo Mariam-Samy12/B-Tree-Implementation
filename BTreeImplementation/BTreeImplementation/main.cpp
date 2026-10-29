@@ -5,6 +5,7 @@ using namespace std;
 int main(){
 
 	int choice;
+    Btree<int , 3>tree ;
 
 	do
 	{
@@ -21,8 +22,23 @@ int main(){
         switch (choice)
         {
         case 1:
-            cout << "Insert selected\n";
-            break;
+            {
+                int value;
+
+                cout << "Enter the value to insert: ";
+                cin >> value;
+
+                if (tree.insert(value))
+                {
+                    cout << "Value inserted successfully!" << endl;
+                }
+                else
+                {
+                    cout << "Value already exists!" << endl;
+                }
+
+                break;
+            }
 
         case 2:
             cout << "Delete selected\n";
@@ -100,7 +116,7 @@ int main(){
 //root.child[0] = &left;
 //root.child[1] = &middle;
 //root.child[2] = &right;
-//
+
 //tree.root = &root;
 
 

@@ -7,8 +7,7 @@ int main(){
 	int choice;
     Btree<int , 3>tree ;
 
-	do
-	{
+	do{
 		cout << "\n========== B-Tree Menu ==========\n";
 		cout << "1. Insert\n";
 		cout << "2. Delete\n";
@@ -19,8 +18,7 @@ int main(){
 
 		cin >> choice;
 
-        switch (choice)
-        {
+        switch (choice){
         case 1:
             {
                 int value;
@@ -28,22 +26,29 @@ int main(){
                 cout << "Enter the value to insert: ";
                 cin >> value;
 
-                if (tree.insert(value))
-                {
+                if (tree.insert(value)) {
                     cout << "Value inserted successfully!" << endl;
                 }
-                else
-                {
+                else {
                     cout << "Value already exists!" << endl;
                 }
-
                 break;
             }
-
         case 2:
-            cout << "Delete selected\n";
-            break;
+        {
+            int value;
 
+            cout << "Enter the value to delete: ";
+            cin >> value;
+
+            if (tree.remove(value)) {
+                cout << "Value deleted successfully!" << endl;
+            }
+            else {
+                cout << "Value not found!" << endl;
+            }
+            break;
+        }
         case 3:
         {
             int value;
@@ -63,9 +68,7 @@ int main(){
                 cout << "Key not found!" << endl;
             }
         }
-
             break;
-
         case 4:
             cout << "Display selected\n";
             break;

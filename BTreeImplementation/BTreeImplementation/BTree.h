@@ -442,4 +442,28 @@ struct Btree {
         }
         return removed;
     }
+
+    void display() const {
+        displayAll_DF(root);
+        std::cout << std::endl;
+    }
+    void displayAll_DF(Node<Type, ord>* root) const{
+        if (root == nullptr) {
+            return;
+        }
+        if(root -> is_leaf){
+            for(int i =0; i<root->num_keys; i++){
+                std::cout << root -> key[i] << " " ;
+            }
+            return;
+        }
+        InternalNode<Type, ord>* internal = static_cast<InternalNode<Type, ord>*>(root);
+        for (int i = 0; i < internal->num_keys; i++){
+            displayAll_DF(internal->child[i]);
+            std::cout << internal -> key[i] << " ";
+        }
+        displayAll_DF(internal->child[internal->num_keys]);
+    }
+
 };
+

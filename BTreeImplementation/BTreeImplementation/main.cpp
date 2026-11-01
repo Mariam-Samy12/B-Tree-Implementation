@@ -71,6 +71,8 @@ int main(){
             break;
         case 4:
             cout << "Display selected\n";
+            cout << "Tree Elements (In-Order Depth First): ";
+            tree.display();
             break;
 
         case 5:

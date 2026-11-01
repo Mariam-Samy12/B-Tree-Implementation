@@ -166,6 +166,35 @@ void fixChild(InternalNode<Type, ord>* parent, int index){
 template <typename Type, int ord>
 struct Btree {
 	Node<Type, ord>* root = nullptr;
+    //Destractor
+    ~Btree()
+    {
+        destroy(root);
+        root = nullptr;
+    }
+
+    void destroy(Node<Type, ord>* node)
+    {
+        if (node == nullptr) 
+        {
+            return;
+        }
+
+        if (node->is_leaf)
+        {
+            delete static_cast<LeafNode<Type, ord>*>(node);
+            return;
+        }
+
+        InternalNode<Type, ord>* internal =
+            static_cast<InternalNode<Type, ord>*>(node);
+
+        for (int i = 0; i <= internal->num_keys; i++)
+        {
+            destroy(internal->child[i]);
+        }
+        delete internal;
+    }
 
 	//search
 	Node<Type, ord>* search(Type& value,int&index) {
